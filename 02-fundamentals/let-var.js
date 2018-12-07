@@ -23,3 +23,4 @@ for (var i = 0; i <= 5; i++) {
     console.log(`i: ${ i }`);
 }
 console.log(`The for loop was exited when i = 6, but it doesn't print anything out. However, because the value of 6 was assigned, I can see the actual current value of i, which is ${i}`);
+console.log("Always use let, unless you want to create some sort of general variable that can be accessed from anywhere, and you understand the risks associated with this.");

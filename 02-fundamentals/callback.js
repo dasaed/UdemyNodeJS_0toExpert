@@ -24,3 +24,12 @@ getUsuarioById(20, (err, usuario) => {
 
     console.log('El nombre del usuario de base de datos es: ', usuario);
 });
+
+//getUsuarioByID ( id=20, callback = funcion(err, usuario){ if err, then log err, else, console.log(Nombre del usuario) } )
+// In our case, callback becomes equal to:
+// callback(err, usuario){
+//     if (err) {
+//         return console.log(err);
+//     }
+//     console.log('El nombre del usuario de base de datos es: ', usuario);
+// };

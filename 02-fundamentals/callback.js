@@ -2,17 +2,17 @@
 //     console.log("Hola Mundo");
 // }, 3000);
 
-let getUsuarioById = (id, callback) => {
+let getUsuarioById = (id, puppies) => {
     //id es una variable tipo objecto, y callback es una variable tipo funcion
     let usuario = {
         nombre: 'Carlos',
         id: id
     }
 
-    if (id === 20) {
-        callback(`El usuario con id ${id}, no existe en la base de datos`);
+    if (id === 10) {
+        puppies(`El usuario con id ${id}, no existe en la base de datos`);
     } else {
-        callback(null, usuario.nombre);
+        puppies(null, usuario.nombre);
     }
 }
 

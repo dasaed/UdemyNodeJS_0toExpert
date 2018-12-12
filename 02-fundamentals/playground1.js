@@ -35,10 +35,10 @@ let getSuperpower = (hero, anotherFunction) => {
 
     let thePower = superpowers.find((power) => { return power.id === hero.id; });
     if (!thePower) {
-        return (anotherFunction(`The super hero ${hero.name} doesn't have super power assigned yet`));
+        return anotherFunction(`The super hero ${hero.name} doesn't have super power assigned yet`);
     }
 
-
+    return anotherFunction(null, { id: theHero.id, name: theHero.name, power: thePower.power });
 
 };
 

@@ -30,15 +30,15 @@ let superpowers = [{
         power: 'Super Speed'
     }
 ];
-
+////////////////////////////////////////////////////////////////////////////////////////////////
 let getSuperpower = (hero, anotherFunction) => {
 
     let thePower = superpowers.find((power) => { return power.id === hero.id; });
     if (!thePower) {
-        return anotherFunction(`The super hero ${hero.name} doesn't have super power assigned yet`);
+        return anotherFunction(`The super hero ${hero.name} doesn't have a super power assigned yet`);
     }
 
-    return anotherFunction(null, { id: theHero.id, name: theHero.name, power: thePower.power });
+    return anotherFunction(null, { id: hero.id, name: hero.name, power: thePower.power });
 
 };
 
@@ -50,8 +50,27 @@ let getSuperhero = (id, someFunction) => {
         return someFunction(`There is no hero associated to id: ${id}`);
     }
 
-    return someFunction(null, { id: theHero.id, name: theHero.name });
+    return getSuperpower({ id: theHero.id, name: theHero.name },
+        (error, mySuperhero) => {
+            if (error) {
+                return console.log(error)
+            }
+            return (mySuperhero);
+        }
+
+    );
 
 };
+
+console.log(getSuperhero(3,
+
+    (err, answer) => {
+        if (err) {
+            return console.log(err);
+        }
+        return answer;
+    }
+
+));
 
 console.log(" ///////////// ending of 1st test code -  callback functions ////////////// ")

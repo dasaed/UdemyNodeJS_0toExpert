@@ -24,6 +24,24 @@ let salarios = [{
     },
 ];
 
+
+let getSalario = (empleado) => {
+    return new Promise((resolve, reject) => {
+        let salarioDB = salarios.find(salario => salario.id === empleado.id);
+        if (!salarioDB) {
+            reject(`No se encontro un salario para el empleado ${empleado.nombre}`);
+        } else {
+            let respuesta = {
+                nombre: empleado.nombre,
+                salario: salarioDB.salario,
+                id: empleado.id
+            };
+            resolve(respuesta);
+        }
+    })
+};
+
+
 let getEmpleado = (id) => {
     // return new Promise ( (“Function1”,“Function2”)=> { your function here, where Function1 = resolve callback, and Function2  = reject Call back or error callback. }   )
     return new Promise((resolve, reject) => {
@@ -32,20 +50,40 @@ let getEmpleado = (id) => {
         });
 
         if (!empleadoDB) {
-            reject(`No existe un empleado con el ID ${id}`)
+            let mensajeError = `No existe un empleado con el ID ${id}`;
+            reject(mensajeError);
         } else {
-            resolve(empleadoDB);
+            //let fullEmpleado =
+            resolve(empleadoDB); // solo se puede regresar una variable. si hay multiples datos, se deben adjuntar como un solo objeto.
         }
     });
 };
 
-getEmpleado(2).then(
-    empleado => {
-        console.log('Empleado de BD:', empleado)
+getEmpleado(1).then(empleado => {
+    console.log(empleado)
+}, err => console.log(err));
+
+getEmpleado(3).then((empleado) => {
+        getSalario(empleado).then(
+            resp => {
+                console.log(`El salario de ${resp.nombre} es de ${ resp.salario} `);
+            }, (err) => console.log(err)
+        );
     },
-    (err) => {
-        console.log(err);
-    }
+    (err) => console.log(err)
 );
+
+/// encadenando promesas de la manera correcta ///
+
+getEmpleado(10).then(empleado => {
+        return getSalario(empleado);
+    })
+    .then(resp => {
+        console.log(`El salario de ${resp.nombre} es de ${ resp.salario}`);
+    })
+    .catch(err => { console.log(err) })
+
+
+
 
 console.log("////////////////// End of Program ///////////////////");

@@ -26,7 +26,7 @@ let calc = function(num1, num2, operation) {
     return operation(num1, num2);
 };
 
-console.log("This is the value  of the calcuation is: " + calc(10, 6, mod));
+console.log("The value  of the calcuation is: " + calc(10, 6, mod));
 
 var myArray = [{
         number: 34,
